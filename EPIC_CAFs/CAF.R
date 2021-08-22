@@ -1,0 +1,24 @@
+#devtools::install_github("GfellerLab/EPIC"  )
+
+inputFile="SYMBOL.txt"                                         #输入文件
+#引用包
+library(limma)
+#读取输入文件，并对输入文件处理
+rt=read.table(inputFile,sep="\t",header=T,check.names=F)
+rt=as.matrix(rt)
+rownames(rt)=rt[,1]
+exp=rt[,2:ncol(rt)]
+dimnames=list(rownames(exp),colnames(exp))
+mat=matrix(as.numeric(as.matrix(exp)),nrow=nrow(exp),dimnames=dimnames)
+mat=avereps(mat)
+mat=mat[rowMeans(mat)>0,]
+#删掉正常样品
+#group=sapply(strsplit(colnames(mat),"\\."),"[",4)
+#group=sapply(strsplit(group,""),"[",1)
+#group=gsub("2","1",group)
+#mat=mat[,group==0]
+
+library(EPIC)
+rt1=EPIC(mat)
+rt1=as.data.frame(rt1)
+write.table(rt1,file="CAF.txt",sep="\t",quote=F,col.names=T)
