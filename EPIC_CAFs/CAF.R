@@ -1,9 +1,9 @@
 #devtools::install_github("GfellerLab/EPIC"  )
 
-inputFile="SYMBOL.txt"                                         #ÊäÈëÎÄ¼ş
-#ÒıÓÃ°ü
+inputFile="SYMBOL.txt"                                         #è¾“å…¥æ–‡ä»¶
+#å¼•ç”¨åŒ…
 library(limma)
-#¶ÁÈ¡ÊäÈëÎÄ¼ş£¬²¢¶ÔÊäÈëÎÄ¼ş´¦Àí
+#è¯»å–è¾“å…¥æ–‡ä»¶ï¼Œå¹¶å¯¹è¾“å…¥æ–‡ä»¶å¤„ç†
 rt=read.table(inputFile,sep="\t",header=T,check.names=F)
 rt=as.matrix(rt)
 rownames(rt)=rt[,1]
@@ -12,12 +12,6 @@ dimnames=list(rownames(exp),colnames(exp))
 mat=matrix(as.numeric(as.matrix(exp)),nrow=nrow(exp),dimnames=dimnames)
 mat=avereps(mat)
 mat=mat[rowMeans(mat)>0,]
-#É¾µôÕı³£ÑùÆ·
-#group=sapply(strsplit(colnames(mat),"\\."),"[",4)
-#group=sapply(strsplit(group,""),"[",1)
-#group=gsub("2","1",group)
-#mat=mat[,group==0]
-
 library(EPIC)
 rt1=EPIC(mat)
 rt1=as.data.frame(rt1)
