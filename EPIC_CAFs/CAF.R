@@ -1,9 +1,7 @@
 #devtools::install_github("GfellerLab/EPIC"  )
 
-inputFile="SYMBOL.txt"                                         #输入文件
-#引用包
+inputFile="SYMBOL.txt"                  
 library(limma)
-#读取输入文件，并对输入文件处理
 rt=read.table(inputFile,sep="\t",header=T,check.names=F)
 rt=as.matrix(rt)
 rownames(rt)=rt[,1]
