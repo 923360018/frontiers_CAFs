@@ -1,17 +1,12 @@
-
 #if (!requireNamespace("BiocManager", quietly = TRUE))
 #    install.packages("BiocManager")
 #BiocManager::install("limma")
-
 #if (!requireNamespace("BiocManager", quietly = TRUE))
 #    install.packages("BiocManager")
 #BiocManager::install("GSVA")
-
 #if (!requireNamespace("BiocManager", quietly = TRUE))
 #    install.packages("BiocManager")
 #BiocManager::install("GSEABase")
-
-
 inputFile="SYMBOL.txt"                                      
 gmtFile="immune.gmt"                  
 library(GSVA)
@@ -27,7 +22,6 @@ mat=avereps(mat)
 mat=mat[rowMeans(mat)>0,]
 geneSet=getGmt(gmtFile, 
                geneIdType=SymbolIdentifier())
-
 #ssgsea
 ssgseaScore=gsva(mat, geneSet, method='ssgsea', kcdf='Gaussian', abs.ranking=TRUE)
 normalize=function(x){
