@@ -1,5 +1,4 @@
 #devtools::install_github("GfellerLab/EPIC"  )
-
 inputFile="SYMBOL.txt"                  
 library(limma)
 rt=read.table(inputFile,sep="\t",header=T,check.names=F)
