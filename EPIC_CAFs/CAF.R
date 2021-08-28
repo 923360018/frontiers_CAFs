@@ -10,6 +10,6 @@ mat=matrix(as.numeric(as.matrix(exp)),nrow=nrow(exp),dimnames=dimnames)
 mat=avereps(mat)
 mat=mat[rowMeans(mat)>0,]
 library(EPIC)
-rt1=EPIC(mat)
+rt1=EPIC(mat,reference=TRef)
 rt1=as.data.frame(rt1)
 write.table(rt1,file="CAF.txt",sep="\t",quote=F,col.names=T)
